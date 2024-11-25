@@ -49,6 +49,10 @@ void Player::setIsOnGround(bool changeState)
 {
 	this->isOnGround = changeState;
 }
+bool Player::getIsOnGround()
+{
+	return this->isOnGround;
+}
 
 
 void Player::updatePlayer(float dt) 

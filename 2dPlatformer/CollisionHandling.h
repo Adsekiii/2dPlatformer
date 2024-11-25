@@ -12,3 +12,14 @@ template<class Ta, class Tb> bool isIntersecting(Ta& ObjectA,Tb& ObjectB) {
 			);
 }
 
+
+template<class Ta, class Tb> void checkCollision(Ta& ObjectA, Tb& ObjectB)
+{
+	if (!isIntersecting(ObjectA, ObjectB)) 
+	{ 
+		return; 
+	}
+
+	ObjectA.setIsOnGround(true);
+
+}

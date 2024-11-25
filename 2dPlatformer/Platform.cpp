@@ -12,8 +12,6 @@ RectangleShape Platform::drawPlatform()
 	return this->platform;
 }
 
-
-
 float Platform::X()
 {
 	return this->platform.getPosition().x;

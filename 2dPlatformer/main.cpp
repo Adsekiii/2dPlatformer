@@ -7,6 +7,12 @@ int main()
 	Platform platform1(256.f, 64.f, { WINDOWWIDTH / 2,WINDOWHEIGHT - 100 });
 	Platform platform2(256.f, 64.f, { 0,WINDOWHEIGHT - 200 });
 	Platform platform3(256.f, 64.f, {WINDOWWIDTH,WINDOWHEIGHT - 200});
+
+	vector<Platform> platforms;
+	platforms.push_back(platform1);
+	platforms.push_back(platform2);
+	platforms.push_back(platform3);
+
 	Player player({WINDOWWIDTH/2, WINDOWHEIGHT - 200});
 
 	Clock inBetweenFPS;
@@ -26,21 +32,31 @@ int main()
 		deltaTime = inBetweenFPS.restart();
 
 		player.updatePlayer(deltaTime.asSeconds());
-		if (isIntersecting(player, platform1) || isIntersecting(player, platform2) || isIntersecting(player, platform3))
+		
+	/*	for (auto& platform : platforms)
+		{
+			checkCollision(player, platform);
+		}*/
+
+		checkCollision(player, platform1);
+
+		
+		/*if (isIntersecting(player, platform1) || isIntersecting(player, platform2) || isIntersecting(player, platform3))
 		{
 			player.setIsOnGround(true);
 		}
 		else
 		{
 			player.setIsOnGround(false);
-		}
+		}*/
 		
 
 		window.clear();
 		///
-		window.draw(platform1.drawPlatform());
-		window.draw(platform2.drawPlatform());
-		window.draw(platform3.drawPlatform());
+		for (auto& platform : platforms)
+		{
+			window.draw(platform.drawPlatform());
+		}
 		window.draw(player.drawPlayer());
 		///
 		window.display();

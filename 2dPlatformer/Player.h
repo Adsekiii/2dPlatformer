@@ -4,7 +4,7 @@
 class Player
 {
 public:
-
+	bool isOnPlatform = false;
 	Player(Vector2f position);
 
 	void changeSpeed(float speed);
@@ -14,6 +14,7 @@ public:
 	void move(float dt);
 
 	void setIsOnGround(bool);
+	bool getIsOnGround();
 
 	float X();
 	float Y();
