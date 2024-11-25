@@ -1,62 +1,64 @@
 #include "Player.h"
 
-Player::Player(Vector2f position, float speed, float jumpPower)
+Player::Player(Vector2f position)
 {
-	this->player.setFillColor(Color::Red);
-	this->player.setSize(Vector2f(50.f,50.f));
-	this->player.setOrigin(this->X() + 25.f, this->Y() + 25.f);
+	this->player.setSize({ 64.f,64.f});
+	this->player.setOrigin(this->X() + this->player.getSize().x / 2, this->Y() + this->player.getSize().y / 2);
 	this->player.setPosition(position);
-	this->isOnGround = true;
-	this->playerSpeed = speed;
-	this->jumpPower = jumpPower;
+	this->player.setFillColor(Color::Green);
 }
 
-void Player::movePlayer(float dt)
-{
-	if (Keyboard::isKeyPressed(Keyboard::A)) 
-	{
-		this->playerVelocity.x = -1;
-	}
-	else if (Keyboard::isKeyPressed(Keyboard::D))
-	{
-		this->playerVelocity.x = 1;
-	}
-	else
-	{
-		this->playerVelocity.x = 0;
-	}
-
-	if (Keyboard::isKeyPressed(Keyboard::Space) && this->isOnGround)
-	{
-		this->isOnGround = false;
-		this->playerVelocity.y = -1;
-	}
-	else if (!this->isOnGround)
-	{
-			this->playerVelocity.y += 1.f * dt;
-	}
-}
-
-void Player::setVelocity(float veloX, float veloY) {
-	this->playerVelocity = Vector2f(veloX,  veloY);
-}
-
-Vector2f Player::getVelocity() {
-	return this->playerVelocity;
-}
-
-
-void Player::updatePlayer(float dt) {
-	movePlayer(dt);
-	this->player.setPosition(this->X() + (this->playerVelocity.x * this->playerSpeed * dt),
-							 this->Y() + (this->playerVelocity.y * this->jumpPower * dt));
-}
-
-
-RectangleShape Player::getShape()
+RectangleShape Player::drawPlayer()
 {
 	return this->player;
 }
+
+
+void Player::move(float dt)
+{
+	if (Keyboard::isKeyPressed(Keyboard::A))
+	{
+		this->player.setPosition(this->X() - this->speed * dt,this->Y());
+	}
+	if (Keyboard::isKeyPressed(Keyboard::D))
+	{
+		this->player.setPosition(this->X() + this->speed * dt , this->Y());
+	}
+	
+	if (Keyboard::isKeyPressed(Keyboard::Space) && this->isOnGround)
+	{
+		this->velocityY = this->jumpPower;
+		this->player.setPosition(this->X(), this->Y() - this->velocityY * dt);
+		this->isOnGround = false;
+	}
+	
+	if (!isOnGround)
+	{
+		this->velocityY -= this->gravity * dt;
+		this->player.setPosition(this->X(), this->Y() - this->velocityY * dt);
+	}
+	else
+	{
+		this->velocityY = 0;
+	}
+
+
+}
+
+void Player::setIsOnGround(bool changeState) 
+{
+	this->isOnGround = changeState;
+}
+
+
+void Player::updatePlayer(float dt) 
+{
+	this->move(dt);
+	
+}
+
+
+
 
 float Player::X()
 {

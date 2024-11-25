@@ -1,20 +1,22 @@
 #pragma once
-#include "SFMLLibs.h"
-#include "GlobalVariables.h"
+#include "SFMLlibs.h"
 
-#include "Player.h"
-
-class Platform {
+class Platform 
+{
 public:
+
 	Platform(float sizeX, float sizeY, Vector2f position);
-	RectangleShape getShape();
+
+	RectangleShape drawPlatform();
+
+	float X();
+	float Y();
 	float left();
 	float right();
 	float top();
 	float bottom();
-	float X();
-	float Y();
 
 private:
 	RectangleShape platform;
+
 };

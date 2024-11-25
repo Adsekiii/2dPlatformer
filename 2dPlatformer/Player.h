@@ -1,33 +1,33 @@
 #pragma once
-#include "SFMLLibs.h"
-#include "GlobalVariables.h"
-
-#include "Platform.h"
+#include "SFMLlibs.h"
 
 class Player
 {
 public:
-	bool isOnGround;
 
-	Player(Vector2f position, float speed, float jumpPower);
-	RectangleShape getShape();
+	Player(Vector2f position);
+
+	void changeSpeed(float speed);
+	RectangleShape drawPlayer();
+
+	void updatePlayer(float dt);
+	void move(float dt);
+
+	void setIsOnGround(bool);
+
+	float X();
+	float Y();
 	float left();
 	float right();
 	float top();
 	float bottom();
-	float X();
-	float Y();
-
-	void setVelocity(float veloX, float veloY);
-	Vector2f getVelocity();
-
-
-	void updatePlayer(float dt);
-	void movePlayer(float dt);
 
 private:
+	bool isOnGround = false;
 	RectangleShape player;
-	float playerSpeed;
-	float jumpPower;
-	Vector2f playerVelocity;
+	float speed = 200;
+	float jumpPower = 600;
+	float velocityY = 0;
+	float velocityX = 0;
+	const float gravity = 1000;
 };

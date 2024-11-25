@@ -1,17 +1,18 @@
 #include "Platform.h"
 
-Platform::Platform(float sizeX, float sizeY, Vector2f position) 
+Platform::Platform(float sizeX, float sizeY, Vector2f position)
 {
-	this->platform.setFillColor(Color::Green);
-	this->platform.setSize(Vector2f(sizeX,sizeY));
-	this->platform.setOrigin(this->X() + sizeX / 2 , this->Y() + sizeY / 2);
+	this->platform.setSize({ sizeX,sizeY });
+	this->platform.setOrigin(this->X() + this->platform.getSize().x / 2, this->Y() + this->platform.getSize().y / 2);
 	this->platform.setPosition(position);
 }
 
-RectangleShape Platform::getShape()
+RectangleShape Platform::drawPlatform()
 {
 	return this->platform;
 }
+
+
 
 float Platform::X()
 {
