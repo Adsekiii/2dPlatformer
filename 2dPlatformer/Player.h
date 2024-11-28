@@ -24,6 +24,7 @@ public:
 	float bottom();
 
 private:
+	
 	bool isOnGround = false;
 	RectangleShape player;
 	float speed = 200;

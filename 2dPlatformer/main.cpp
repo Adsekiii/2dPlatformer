@@ -33,23 +33,14 @@ int main()
 
 		player.updatePlayer(deltaTime.asSeconds());
 		
-	/*	for (auto& platform : platforms)
-		{
-			checkCollision(player, platform);
-		}*/
 
-		checkCollision(player, platform1);
-
-		
-		/*if (isIntersecting(player, platform1) || isIntersecting(player, platform2) || isIntersecting(player, platform3))
+		for (auto& platform : platforms)
 		{
-			player.setIsOnGround(true);
+			if (isIntersectingContainer(player, platform))
+			{
+				checkCollision(player, platform);
+			}
 		}
-		else
-		{
-			player.setIsOnGround(false);
-		}*/
-		
 
 		window.clear();
 		///

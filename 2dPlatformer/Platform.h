@@ -16,7 +16,20 @@ public:
 	float top();
 	float bottom();
 
+	float containerLeft();
+	float containerRight();
+	float containerTop();
+	float containerBottom();
+
+	bool getIsPlayerNerby();
+	void setIsPlayerNerby(bool);
+
+	float XcontainsPlayer();
+	float YcontainsPlayer();
+
 private:
+	bool isPlayerNerby{ false };
+	RectangleShape containsPlayer;
 	RectangleShape platform;
 
 };
