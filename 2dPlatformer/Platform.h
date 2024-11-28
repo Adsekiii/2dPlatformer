@@ -29,7 +29,7 @@ public:
 
 private:
 	bool isPlayerNerby{ false };
-	RectangleShape containsPlayer;
+	Vector2f containsPlayer;
 	RectangleShape platform;
 
 };
