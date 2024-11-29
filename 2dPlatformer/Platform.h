@@ -21,14 +21,10 @@ public:
 	float containerTop();
 	float containerBottom();
 
-	bool getIsPlayerNerby();
-	void setIsPlayerNerby(bool);
-
 	float XcontainsPlayer();
 	float YcontainsPlayer();
 
 private:
-	bool isPlayerNerby{ false };
 	Vector2f containsPlayer;
 	RectangleShape platform;
 

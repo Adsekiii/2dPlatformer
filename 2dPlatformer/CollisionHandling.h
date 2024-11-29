@@ -27,9 +27,43 @@ template<class Ta, class Tb> void checkCollision(Ta& ObjectA, Tb& ObjectB)
 	if (!isIntersecting(ObjectA, ObjectB)) 
 	{ 
 		ObjectA.setIsOnGround(false);
+		ObjectA.setIsOnWall(false);
 		return; 
 	}
 
-	ObjectA.setIsOnGround(true);
+	float disT = abs(ObjectA.bottom() - ObjectB.top());
+	float disB = abs(ObjectA.top() - ObjectB.bottom());
+	float disL = abs(ObjectA.right() - ObjectB.left());
+	float disR = abs(ObjectA.left() - ObjectB.right());
+
+	bool hitTop = disT < disB;
+	bool hitLeft = disL < disR;
+
+	float minTopBottom = hitTop ? disT : disB;
+	float minLeftRight = hitTop ? disL : disR;
+
+	bool hitTopBottom = minTopBottom < minLeftRight;
+
+	if (hitTop && hitTopBottom)
+	{
+		ObjectA.setIsOnGround(true);
+	}
+	else if (!hitTop && hitTopBottom)
+	{
+		ObjectA.setVelocity({0,-100});
+		ObjectA.setIsOnGround(false);
+	}
+	else if (hitLeft && !hitTopBottom)
+	{
+		ObjectA.setIsOnGround(false);
+		ObjectA.setIsOnWall(true);
+	}
+	else if (!hitLeft && !hitTopBottom)
+	{
+		ObjectA.setIsOnGround(false);
+		ObjectA.setIsOnWall(true);
+	}
+
+
 
 }

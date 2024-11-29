@@ -4,14 +4,11 @@ int main()
 {
 	RenderWindow window({WINDOWWIDTH, WINDOWHEIGHT},"Platformer");
 
-	Platform platform1(256.f, 64.f, { WINDOWWIDTH / 2,WINDOWHEIGHT - 100 });
-	Platform platform2(256.f, 64.f, { 0,WINDOWHEIGHT - 200 });
-	Platform platform3(256.f, 64.f, {WINDOWWIDTH,WINDOWHEIGHT - 200});
-
 	vector<Platform> platforms;
-	platforms.push_back(platform1);
-	platforms.push_back(platform2);
-	platforms.push_back(platform3);
+	platforms.emplace_back(Platform(256.f, 64.f, { WINDOWWIDTH / 2,WINDOWHEIGHT - 100 }));
+	platforms.emplace_back(Platform(256.f, 64.f, { 0,WINDOWHEIGHT - 200 }));
+	platforms.emplace_back(Platform(256.f, 64.f, { WINDOWWIDTH,WINDOWHEIGHT - 200 }));
+	platforms.emplace_back(Platform(256.f, 64.f, { WINDOWWIDTH / 2,WINDOWHEIGHT - 400 }));
 
 	Player player({WINDOWWIDTH/2, WINDOWHEIGHT - 200});
 

@@ -3,7 +3,7 @@
 Platform::Platform(float sizeX, float sizeY, Vector2f position)
 {
 	this->platform.setSize({ sizeX,sizeY });
-	this->containsPlayer = Vector2f(sizeX * 1.2, sizeY * 1.2);
+	this->containsPlayer = Vector2f(sizeX*1.5, sizeY*1.5);
 	this->platform.setOrigin(this->X() + this->platform.getSize().x / 2, this->Y() + this->platform.getSize().y / 2);
 	this->platform.setPosition(position);
 }
@@ -20,15 +20,6 @@ float Platform::X()
 float Platform::Y()
 {
 	return this->platform.getPosition().y;
-}
-
-bool Platform::getIsPlayerNerby()
-{
-	return this->isPlayerNerby;
-}
-void Platform::setIsPlayerNerby(bool changeState)
-{
-	this->isPlayerNerby = changeState;
 }
 
 float Platform::left()

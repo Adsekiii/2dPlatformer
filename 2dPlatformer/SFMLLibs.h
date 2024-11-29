@@ -10,4 +10,4 @@ using namespace std;
 using namespace sf;
 
 constexpr int WINDOWWIDTH = 800;
-constexpr int WINDOWHEIGHT = 600;
+constexpr int WINDOWHEIGHT = 640;

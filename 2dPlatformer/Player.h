@@ -4,7 +4,6 @@
 class Player
 {
 public:
-	bool isOnPlatform = false;
 	Player(Vector2f position);
 
 	void changeSpeed(float speed);
@@ -16,6 +15,12 @@ public:
 	void setIsOnGround(bool);
 	bool getIsOnGround();
 
+	void setIsOnWall(bool);
+	bool getIsOnWall();
+
+	void setVelocity(Vector2f);
+	Vector2f getVelocity();
+
 	float X();
 	float Y();
 	float left();
@@ -26,6 +31,7 @@ public:
 private:
 	
 	bool isOnGround = false;
+	bool isOnWall = false;
 	RectangleShape player;
 	float speed = 200;
 	float jumpPower = 600;
