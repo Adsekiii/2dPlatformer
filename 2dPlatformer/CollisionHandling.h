@@ -40,7 +40,7 @@ template<class Ta, class Tb> void checkCollision(Ta& ObjectA, Tb& ObjectB)
 	bool hitLeft = disL < disR;
 
 	float minTopBottom = hitTop ? disT : disB;
-	float minLeftRight = hitTop ? disL : disR;
+	float minLeftRight = hitLeft ? disL : disR;
 
 	bool hitTopBottom = minTopBottom < minLeftRight;
 
